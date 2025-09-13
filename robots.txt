@@ -1,0 +1,5 @@
+# robots.txt for Anna Birdal Portfolio
+User-agent: *
+Allow: /
+
+Sitemap: https://annabirdal.com/sitemap.xml
