@@ -395,19 +395,33 @@
         .case-study-container ul li {
             margin-bottom: 1rem; /* Increase this value for more space */
         }
+
+footer {
+            max-width: 1000px;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+
+        }
+
     </style>
 </head>
 <body>
     <nav id="desktop-nav">
-        <div class="logo"> <img src="assets/logos/logo ab.png" alt="Anna's logo"></div>
-        <div>
-            <ul class="nav-links">
-                <li><a href="index.html">Work</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="about.html#contact">Contact</a></li>
-            </ul>
+    <div class="logo">
+            <a href="index.html">
+            <img src="assets/logos/logo ab.png" alt="Anna's logo">
+            </a>
         </div>
-    </nav>
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
     <nav id="hamburger-nav">
         <div class="logo">Anna Birdal</div>
@@ -547,9 +561,14 @@
 
     <!-- Footer -->
     <footer>
-        <p>Copyright &#169; 2025 Anna Birdal</p>
-        <p><a href="imprint.html">Imprint</a></p>
+    <p>Copyright &#169; 2025 Anna Birdal</p>
+    <p>
+        <a href="imprint.html">Imprint</a>
+        <span style="margin: 0 1rem;"></span>
+        <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
     </footer>
+
 
     <script src="script.js"></script>
     <script>

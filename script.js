@@ -7,6 +7,71 @@ function toggleMenu() {
     icon.classList.toggle("open");
 }
    
+// Set active navigation state based on current page
+
+document.addEventListener('DOMContentLoaded', function() {
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    const navLinks = document.querySelectorAll('.nav-links a, .menu-links a');
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        
+        const linkText = link.textContent.trim();
+        
+        // Work link
+        if (linkText === 'Work') {
+            if (path.endsWith('index.html') || path.endsWith('/') || 
+                path.includes('case-study') || path.includes('matchmaking') || 
+                path.includes('survey') || path.includes('pricing') || 
+                path.includes('memory-training')) {
+                link.classList.add('active');
+            }
+        }
+        
+        // About link
+        if (linkText === 'About' && path.includes('about.html') && hash !== '#contact') {
+            link.classList.add('active');
+        }
+        
+        // Contact link
+        if (linkText === 'Contact' && path.includes('about.html') && hash === '#contact') {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Update when scrolling to contact section
+window.addEventListener('hashchange', updateActiveNav);
+
+function updateActiveNav() {
+    const hash = window.location.hash;
+    const navLinks = document.querySelectorAll('.nav-links a, .menu-links a');
+    
+    navLinks.forEach(link => {
+        const linkText = link.textContent.trim();
+        
+        if (linkText === 'Contact') {
+            if (hash === '#contact') {
+                link.classList.add('active');
+                // Remove from About
+                document.querySelectorAll('.nav-links a, .menu-links a').forEach(l => {
+                    if (l.textContent.trim() === 'About') l.classList.remove('active');
+                });
+            } else {
+                link.classList.remove('active');
+            }
+        }
+        
+        if (linkText === 'About') {
+            if (hash !== '#contact' && window.location.pathname.includes('about.html')) {
+                link.classList.add('active');
+            } else if (hash === '#contact') {
+                link.classList.remove('active');
+            }
+        }
+    });
+}
 
 // ...existing code...
 
@@ -187,4 +252,26 @@ document.addEventListener('DOMContentLoaded', function() {
             closeImageModal();
         }
     });
+});
+
+// Animate iteration items on scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const iterationItems = document.querySelectorAll('.iteration-item, .iteration-arrow');
+    
+    function checkIterationVisibility() {
+        iterationItems.forEach(item => {
+            const rect = item.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight - 100;
+            
+            if (isVisible) {
+                item.classList.add('visible');
+            }
+        });
+    }
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkIterationVisibility);
+    
+    // Check on page load
+    checkIterationVisibility();
 });

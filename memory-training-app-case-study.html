@@ -357,7 +357,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 0;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -660,7 +660,58 @@
             }
         }
 
-   
+        
+.youtube-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 1rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.youtube-player {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 ratio */
+  background: #000;
+  cursor: pointer;
+}
+
+.youtube-player img,
+.youtube-player iframe {
+  position: absolute;
+  
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.youtube-player .play-button {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 20%;
+  max-width: 68px;
+  aspect-ratio: 68 / 48;
+  background: url('https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg') no-repeat center center;
+  background-size: contain;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* ensure it's on top of the thumbnail */
+  pointer-events: none;
+  
+}
+
+         footer {
+            max-width: 1000px;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+
+        }  
 
 footer p {
     text-align: center;
@@ -684,17 +735,21 @@ footer a:hover {
 
     </style>
 </head>
+
 <body>
     <nav id="desktop-nav">
-        <div class="logo"> <img src="assets/logos/logo ab.png" alt="Anna's logo"></div>
-        <div>
-            <ul class="nav-links">
-                <li><a href="index.html">Work</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="about.html#contact">Contact</a></li>
-            </ul>
+    <div class="logo">
+            <a href="index.html">
+            <img src="assets/logos/logo ab.png" alt="Anna's logo">
+            </a>
         </div>
-    </nav>
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
     <nav id="hamburger-nav">
         <div class="logo">Anna Birdal</div>
@@ -1061,85 +1116,6 @@ footer a:hover {
   <div class="youtube-player" data-id="UYI3xHI-aP8"></div>
 </div>
 
-<style>
-.youtube-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  margin: 1rem auto;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.youtube-player {
-  position: relative;
-  padding-top: 56.25%; /* 16:9 ratio */
-  background: #000;
-  cursor: pointer;
-}
-
-.youtube-player img,
-.youtube-player iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  object-fit: cover;
-}
-
-.youtube-player .play-button {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 20%;
-  max-width: 68px;
-  aspect-ratio: 68 / 48;
-  background: url('https://i.imgur.com/TxzC70f.png') no-repeat center center;
-  background-size: contain;
-  transform: translate(-50%, -50%);
-  z-index: 2; /* ensure it's on top of the thumbnail */
-  pointer-events: none;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); /* makes it pop */
-}
-</style>
-
-<script>
-function labnolIframe(div) {
-  var iframe = document.createElement("iframe");
-  iframe.setAttribute(
-    "src",
-    "https://www.youtube-nocookie.com/embed/" + div.dataset.id + "?rel=0&vq=hd1080"
-  );
-  iframe.setAttribute("frameborder", "0");
-  iframe.setAttribute("allowfullscreen", "1");
-  iframe.setAttribute("loading", "lazy");
-  div.innerHTML = "";
-  div.appendChild(iframe);
-}
-
-function initYouTubeVideos() {
-  var players = document.querySelectorAll(".youtube-player");
-  players.forEach(function(player) {
-    var id = player.dataset.id;
-    var thumbnail = document.createElement("img");
-    thumbnail.src = "https://img.youtube.com/vi/" + id + "/maxresdefault.jpg"; // highest quality thumb
-    thumbnail.loading = "lazy";
-    player.appendChild(thumbnail);
-
-    var play = document.createElement("div");
-    play.className = "play-button";
-    player.appendChild(play);
-
-    player.addEventListener("click", function() {
-      labnolIframe(player);
-    });
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", initYouTubeVideos);
-</script>
-
 
 <!--Summary-->
 
@@ -1179,12 +1155,16 @@ function initYouTubeVideos() {
     </div>
 
    
-
-    <!-- Footer -->
+ <!-- Footer -->
     <footer>
     <p>Copyright &#169; 2025 Anna Birdal</p>
-    <p><a href="imprint.html">Imprint</a></p>
-</footer>
+    <p>
+        <a href="imprint.html">Imprint</a>
+        <span style="margin: 0 1rem;"></span>
+        <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+    </footer>
+
 
     <script src="script.js"></script>
     <script>
@@ -1261,6 +1241,65 @@ function initYouTubeVideos() {
     window.addEventListener('scroll', handleBannerAnimation);
     handleBannerAnimation();
 });
-    </script>
+
+
+
+
+/* Youtube */
+
+function labnolIframe(div) {
+  var iframe = document.createElement("iframe");
+  iframe.setAttribute(
+    "src",
+    "https://www.youtube-nocookie.com/embed/" +
+      div.dataset.id +
+      "?rel=0&vq=hd1080&autoplay=1"
+  );
+  iframe.setAttribute("frameborder", "0");
+  iframe.setAttribute("allowfullscreen", "1");
+  iframe.setAttribute("allow", "autoplay");
+  iframe.setAttribute("loading", "lazy");
+  div.innerHTML = "";
+  div.appendChild(iframe);
+}
+
+function initYouTubeVideos() {
+  var players = document.querySelectorAll(".youtube-player");
+
+  players.forEach(function (player) {
+    // Skip if already initialized
+    if (player.dataset.initialized === "true") return;
+
+    var id = player.dataset.id;
+    var thumbnail = document.createElement("img");
+    thumbnail.src = "https://img.youtube.com/vi/" + id + "/maxresdefault.jpg";
+    thumbnail.alt = "Video thumbnail";
+    thumbnail.loading = "lazy";
+    player.appendChild(thumbnail);
+
+    var play = document.createElement("div");
+    play.className = "play-button";
+    player.appendChild(play);
+
+    player.addEventListener("click", function () {
+      labnolIframe(player);
+    });
+
+    // Mark as initialized
+    player.dataset.initialized = "true";
+  });
+} 
+
+document.addEventListener("DOMContentLoaded", initYouTubeVideos);
+
+
+if (document.readyState !== "loading") {
+  initYouTubeVideos();
+}
+
+setTimeout(initYouTubeVideos, 100);
+</script>
+
+
 </body>
 </html>

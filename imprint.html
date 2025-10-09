@@ -20,9 +20,9 @@
 
         /* Main content styles */
         .main-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
+            max-width: none; /* Remove max-width constraint */
+            margin: 1rem 5%; /* Match index.html 5% margins */
+            padding: 2rem 0; /* Remove horizontal padding since margins handle it */
             line-height: 1.6;
             color: #4f4e4e;
             font-family: 'Nexa', sans-serif;
@@ -71,49 +71,56 @@
 
         /* Contact info styling */
         .contact-info {
-            background: rgba(226, 236, 255, 0.3);
+            background:none;
             padding: 1.5rem;
-            border-radius: 8px;
             margin: 2rem 0;
             border-left: 4px solid rgb(226, 236, 255);
         }
 
         /* Mobile responsiveness */
-        @media screen and (max-width: 768px) {
-            body {
-                padding-top: 10vh; /* Adjust for mobile nav */
-            }
-            
-            .main-content {
-                padding: 2rem 1rem;
-            }
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 10vh;
+    }
+    
+    .main-content {
+        padding: 2rem 0; /* Remove horizontal padding */
+        margin: 2rem 3%; /* Slightly less margin on mobile */
+    }
 
-            .main-content h1 {
-                font-size: 2.5rem;
-            }
-        }
+    .main-content h1 {
+        font-size: 2.5rem;
+    }
+}
 
-        @media screen and (max-width: 480px) {
-            .main-content h1 {
-                font-size: 2rem;
-            }
-        }
+@media screen and (max-width: 480px) {
+    .main-content {
+        margin: 2rem 2%; /* Even less margin on small mobile */
+    }
+    
+    .main-content h1 {
+        font-size: 2rem;
+    }
+}
     </style>
 </head>
 <body>
     <!-- Desktop Navigation - Using standard nav from main site -->
     <nav id="desktop-nav">
-        <div class="logo">
+    <div class="logo">
+            <a href="index.html">
             <img src="assets/logos/logo ab.png" alt="Anna's logo">
+            </a>
         </div>
-        <div>
-            <ul class="nav-links">
-                <li><a href="index.html">Work</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="about.html#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+    
 
     <!-- Hamburger Navigation - Using standard nav from main site -->
     <nav id="hamburger-nav">
@@ -166,6 +173,17 @@
             Impressum von <a href="https://impressum-generator.de" rel="dofollow">Impressum-Generator.de</a>. Powered by <a href="https://www.kanzlei-hasselbach.de/" rel="nofollow">Franziska Hasselbach, Bonn</a>.
         </p>
     </main>
+
+    <!-- Footer -->
+    <footer>
+    <p>Copyright &#169; 2025 Anna Birdal</p>
+    <p>
+        <a href="imprint.html">Imprint</a>
+        <span style="margin: 0 1rem;"></span>
+        <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+    </footer>
+    
 
 
     <script src="script.js"></script>

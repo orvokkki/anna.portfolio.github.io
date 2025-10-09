@@ -175,27 +175,24 @@
             width: 100%;
             border-radius: 12px;
             margin: 2rem 0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            
+            
         }
 
-        .case-study-image:hover {
-            transform: scale(1.02);
-        }
+       
 
         /* 2: Challenge section with two columns */
         .challenge-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: 2fr 1.5fr;
+            gap: 3rem;
             margin: 2rem 0;
         }
 
         .challenge-column {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 1.5rem;
+            padding: 0rem;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
@@ -379,7 +376,55 @@
     align-items: center;
     margin: 3rem 0;
     padding: 2rem 0;
+    /*Animations*/
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
 }
+
+.iteration-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Arrow down between iterations */
+.iteration-arrow {
+    text-align: center;
+    margin: 2rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1) 0.3s, transform 0.7s cubic-bezier(.4,0,.2,1) 0.3s;
+}
+
+.iteration-arrow.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.iteration-arrow img {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    display: inline-block;
+}
+
+@media screen and (max-width: 768px) {
+    .iteration-arrow img {
+        width: 30px; /* Smaller on mobile */
+    }
+}
+
+/* Animation delays for staggered effect */
+.iteration-item:nth-child(1) { transition-delay: 0.1s; }
+.iteration-item:nth-child(3) { transition-delay: 0.2s; }
+.iteration-item:nth-child(5) { transition-delay: 0.3s; }
+
+@media screen and (max-width: 768px) {
+    .iteration-arrow {
+        font-size: 2rem;
+    }
+}
+
+/*end of animations*/
 
 .iteration-item:not(:last-child) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -572,20 +617,54 @@
                 cursor: pointer;
             }
         }
+
+ footer {
+            max-width: 1000px;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+
+        }
+
+        footer p {
+            text-align: center;
+            font-family: 'Nexa', sans-serif;
+            margin-left: -2rem;
+            color: rgb(85, 85, 85);
+        }
+
+        footer a {
+            font-family: 'Nexa', sans-serif;
+            color: rgb(85, 85, 85);
+            text-decoration: none;
+            transition: all 300ms ease;
+        }
+
+        footer a:hover {
+            color: black;
+            text-decoration: none;
+            text-underline-offset: 0.3rem;
+        }
+
     </style>
 
 </head>
 <body>
     <nav id="desktop-nav">
-        <div class="logo"> <img src="assets/logos/logo ab.png" alt="Anna's logo"></div>
-        <div>
-            <ul class="nav-links">
-                <li><a href="index.html">Work</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="about.html#contact">Contact</a></li>
-            </ul>
+    <div class="logo">
+            <a href="index.html">
+            <img src="assets/logos/logo ab.png" alt="Anna's logo">
+            </a>
         </div>
-    </nav>
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
     <nav id="hamburger-nav">
         <div class="logo">Anna Birdal</div>
@@ -712,7 +791,7 @@
                     <li><strong>Basic Information</strong> — survey title, description, availability dates</li>
                     <li><strong>Survey Content</strong> — question creation and configuration</li>
                 </ol>
-                <p>This reduction helped organisers build surveys faster during testing.</p>
+                <p>This reduction helped organisers build surveys faster.</p>
 
                 <div class="image-grid two-columns">
                     <img src="assets/Survey_case study/new survey/step 1/filled.png" alt="Version 2 Basic Information" class="expandable-image" onclick="openModal(this)">
@@ -720,10 +799,16 @@
                 </div>
 
                 <p>Besides, I updated the dashboard with survey results to give it a more compact view:</p>
-                <div class="image-grid two-columns">
-                    <img src="assets/Survey_case study/survey-design-archive/survey results.jpg" alt="Version 1 Survey results" class="expandable-image" onclick="openModal(this)">
-                    <img src="assets/Survey_case study/survey results filled.png" alt="Version 2 Survey results" class="expandable-image" onclick="openModal(this)">
-                </div>
+<div class="image-grid two-columns">
+    <div>
+        <img src="assets/Survey_case study/survey-design-archive/survey results.jpg" alt="Version 1 Survey results" class="expandable-image" onclick="openModal(this)">
+        <p class="image-caption">Version 1</p>
+    </div>
+    <div>
+        <img src="assets/Survey_case study/survey results filled.png" alt="Version 2 Survey results" class="expandable-image" onclick="openModal(this)">
+        <p class="image-caption">Version 2</p>
+    </div>
+</div>
 
             </div>
         </div>
@@ -731,8 +816,8 @@
         <h3 class="subsection-heading">Mobile Experience</h3>
 
         <div>
-            <p>After completing the designs for the content management system, I moved on to creating the experience for the end users — event visitors.</p>
-            <img src="assets/Survey_case study/app archive/survey app archive.png" alt="Version 1 mobile survey" class="case-study-image" onclick="openModal(this)">
+            <p>After completing the designs for the content management system, I moved on to creating the experience for the end users — event visitors:</p>
+            <img src="assets/Survey_case study/app archive/survey mobile archive.png" alt="Version 1 mobile survey" class="case-study-image">
 
         </div>
 
@@ -745,15 +830,14 @@
             <li><strong>Inactive</strong> — survey disabled or expired</li>
         </ul>
 
-        <img src="assets/Survey_case study/survey - app - delivery.png" alt="Mobile survey - different states" class="case-study-image">
+        <img src="assets/Survey_case study/survey details/survey different states.png" alt="Mobile survey - different states" class="case-study-image">
         </div>
+
 
         <div class="iteration-section">
     <h2 class="section-heading">Iterations</h2>
     
-   
-    
-    <!-- Iteration 1: Multi-Submission Feature (no height cropping) -->
+    <!-- Iteration 1: Multi-Submission Feature -->
     <div class="iteration-item">
         <div class="iteration-content">
             <h3>Multi-Submission Feature</h3>
@@ -762,7 +846,12 @@
         <img src="assets/Survey_case study/survey details/survey submitted+countdown.png" alt="Multi-submission countdown feature" class="iteration-image non-expandable contain-fit">
     </div>
 
-    <!-- Iteration 2: GDPR Compliance (no width cropping) -->
+    <!-- Arrow Down -->
+    <div class="iteration-arrow">
+    <img src="assets/Survey_case study/graphic elements/Arrow right.png" alt="arrow down">
+</div>
+
+    <!-- Iteration 2: GDPR Compliance -->
     <div class="iteration-item reverse">
         <div class="iteration-content">
             <h3>GDPR Compliance</h3>
@@ -771,7 +860,12 @@
         <img src="assets/Survey_case study/email collection/email collection enabled.jpg" alt="GDPR compliant email collection" class="iteration-image expandable contain-fit" onclick="openModal(this)">
     </div>
 
-    <!-- Iteration 3: Integration Flexibility (no shadow/grey shade) -->
+    <!-- Arrow Down -->
+    <div class="iteration-arrow">
+        <img src="assets/Survey_case study/graphic elements/Arrow left.png" alt="arrow down">
+    </div>
+
+    <!-- Iteration 3: Integration Flexibility -->
     <div class="iteration-item">
         <div class="iteration-content">
             <h3>Integration Flexibility</h3>
@@ -781,7 +875,7 @@
     </div>
 </div>
 
-        <h2 class="section-heading">Results</h2>
+         <h2 class="section-heading">Results</h2>
         <div class="results-grid">
             <div class="result-item">
                 <div class="result-title">Launch Timeline</div>
@@ -801,20 +895,18 @@
             </div>
         </div>
 
-       
-
         <h2 class="section-heading">What I Learnt</h2>
-        <p>This project taught me valuable lessons about designing under constraints:</p>
+<p>This project taught me valuable lessons about designing under constraints:</p>
 
-        <div class="highlight-box">
-            <p><strong>Consider all edge cases early</strong> — surveys needed clear states for retries, expired availability, and administrative controls.</p>
-            
-            <p><strong>Compliance shapes design</strong> — GDPR requirements influenced both user flows and technical implementation from day one.</p>
-            
-            <p><strong>Simple solutions win</strong> — reducing complexity in the creation flow made the feature more accessible and faster to deploy.</p>
-        </div>
+<ul>
+    <li><strong>Consider all edge cases early</strong> — surveys needed clear states for retries, expired availability, and administrative controls.</li>
+    
+    <li><strong>Compliance shapes design</strong> — GDPR requirements influenced both user flows and technical implementation from day one.</li>
+    
+    <li><strong>Simple solutions win</strong> — reducing complexity in the creation flow made the feature more accessible and faster to deploy.</li>
+</ul>
 
-        <p>Working in a fast-paced environment without formal research challenged me to rely more heavily on design patterns, competitor analysis, and close collaboration with development teams. The result was a feature that launched on time and immediately provided value to our clients.</p>
+<p>Working in a fast-paced environment without formal research challenged me to rely more heavily on design patterns, competitor analysis, and close collaboration with development teams. The result was a feature that launched on time and immediately provided value to our clients.</p>
 
         <a href="pricing-case-study.html" class="next-button">
             Next Project →
@@ -827,11 +919,15 @@
         <img class="modal-content" id="modalImage">
     </div>
 
-    <!-- Footer -->
+   <!-- Footer -->
     <footer>
     <p>Copyright &#169; 2025 Anna Birdal</p>
-    <p><a href="imprint.html">Imprint</a></p>
-</footer>
+    <p>
+        <a href="imprint.html">Imprint</a>
+        <span style="margin: 0 1rem;"></span>
+        <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+    </footer>
 
     <script src="script.js"></script>
     <script>
