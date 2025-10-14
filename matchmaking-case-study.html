@@ -94,12 +94,8 @@
         /* Hero image - remove shadow and border */
         .hero-image {
             width: 100%;
-            
-            
-            
             border-radius: 0;
             margin: 2rem 0;
-        
             box-shadow: none;
             border: none;
             display: block;
@@ -140,8 +136,6 @@
             justify-content: flex-start;
         }
 
-        
-
         .meta-item-double {
             flex: 2 1 0;
         }
@@ -157,7 +151,7 @@
         .meta-row-brief .meta-item.impact {
             background: rgba(255,255,255,0.15);
             backdrop-filter: blur(10px);
-            padding: 1.2rem 0rem;
+            padding: 1.2rem 0;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.2);
             text-align: left;
@@ -179,20 +173,21 @@
             font-size: 2rem;
             font-weight: 700;
             color: black;
-            margin: 3rem 0 1rem 0;
+            margin: 4rem 0 1rem 0;
         }
         
         .subsection-heading {
             font-size: 1.5rem;
             font-weight: 600;
             color: black;
-            margin: 2rem 0 1rem 0;
+            margin: 4rem 0 1rem 0;
         }
         
         .case-study-image {
             width: 100%;
-            border-radius: 12px;
-            margin: 2rem 0;
+            border-radius: none;
+            padding-bottom: 1rem;
+            margin: 2rem 0 1rem;
         }
 
         .image-placeholder {
@@ -213,8 +208,6 @@
             padding: 1rem 0;
         }
 
-
-
         /* Expandable images */
         .image-grid {
             display: grid;
@@ -222,6 +215,7 @@
             gap: 2rem;
             margin: 2rem 0;
             position: relative;
+            cursor: pointer;
         }
 
         .image-grid.single {
@@ -233,8 +227,55 @@
 
         .expandable-image {
             width: 100%;
-            border-radius: 12px;
+            border-radius: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: none;
+            padding: 4 rem 0;
         }
+
+
+
+        /* pain points */
+        .pain-points-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .pain-point {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid rgba(219, 220, 253);
+            background-color: none;
+            text-align: center;
+        }
+
+        .pain-point-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pain-point-text {
+            color: rgb(85, 85, 85);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Mobile: Switch to column layout */
+        @media (max-width: 768px) {
+            .pain-points-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }}
 
         /* Modal for expanded images */
         .modal {
@@ -254,8 +295,8 @@
             margin: 2rem auto;
             display: block;
             width: 90%;
-            max-width: 900px;
-            border-radius: 12px;
+            
+            border-radius: none;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
@@ -287,6 +328,7 @@
             font-style: italic;
             color: rgb(85, 85, 85);
             margin-top: 0.5rem;
+            margin-bottom: 3rem;
             font-size: 0.9rem;
         }
         
@@ -312,9 +354,7 @@
             font-style: italic;
             text-align: left;
             font-size: 1.1rem;
-            border-left: 5px solid #e8e1fe; /* Add vertical line */
-        
-
+            border-left: 5px solid #e8e1fe;
         }
 
         /* Statistics grid */
@@ -330,7 +370,8 @@
             backdrop-filter: blur(10px);
             padding: 1.5rem;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgb(184, 185, 219);
+            background-color: rgba(219, 220, 253);
             text-align: center;
         }
 
@@ -371,7 +412,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.8rem 0;
+            padding: 0.8rem 2rem;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -409,6 +450,327 @@
             transform: translateY(-2px);
         }
 
+        /* Progress tracker */
+.progress-tracker {
+  width: 100%;
+  padding: 5rem 0 2rem 0; /* ⬅️ added vertical padding to prevent cut-off */
+  margin: 2rem 0 ;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  
+  margin: 0;
+  position: relative;
+  
+  
+  overflow: visible; /* ensure the scale isn't clipped */
+}
+
+.progress-line {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: #e0e0e0;
+  z-index: 0;
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  position: relative;
+  z-index: 1;
+  cursor: default; /* no hover interaction */
+  color: #dad9d9; /* light grey text for inactive */
+  text-decoration: none; /* remove underline */
+}
+
+/* Dots */
+.progress-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f1efef; /* light grey fill for inactive */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-decoration: none;
+  color: grey;
+  box-sizing: border-box; /* prevents clipping */
+}
+
+/* Active step */
+.progress-item.active .progress-dot {
+  background: #e8e1fe;
+  transform: scale(1.2);
+  color: rgb(118, 49, 184);
+  
+  
+}
+
+.progress-item.active .progress-label {
+  color: #a593d8;
+  
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Label */
+.progress-label {
+  font-size: 0.85rem;
+  text-align: center;
+  max-width: 110px;
+  text-decoration: none;
+  color: #ccc; /* light grey inactive text */
+}
+
+
+
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Scale animation for important elements */
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+/*from chat GPT*/
+/* Before/After Grid Layout */
+.before-after-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: stretch; /* makes all columns equal height */
+  
+  margin: 2rem 0 3rem 0;
+}
+
+.before-column,
+.after-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* spreads text and image evenly */
+  gap: 0.8rem;
+}
+
+/* Keep images proportional and slightly smaller */
+.before-column .case-study-image,
+.after-column .case-study-image {
+  flex: 0 0 auto;
+  width: 100%;
+  max-height: 500px; /* limits height */
+  object-fit: contain; /* keeps full image visible, not cropped */
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* Arrow Image Column */
+.arrow-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-image {
+  width: 100px; /* adjust as needed */
+  height: auto;
+  opacity: 0.9;
+}
+
+/* Responsive Layout */
+@media (max-width: 800px) {
+  .before-after-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .arrow-column {
+    display: none; /* hide arrow on mobile */
+  }
+}
+/*end/
+
+
+
+        /* Layout for alternating images and text */
+        .alternating-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .alternating-section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .alternating-content {
+            flex: 1;
+        }
+
+        .alternating-image {
+            flex: 1;
+        }
+
+        .alternating-image img,
+        .alternating-image video {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        /* Profile steps row */
+        .profile-steps-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .profile-step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            object-fit: cover;
+        }
+
+        .profile-step-item img {
+           width: 100%;
+   height: 50vh; /* 50% of viewport height */
+    max-height: 500px;
+    min-height: 300px;
+        }
+
+        /* Onboarding arrows */
+        .onboarding-arrow {
+            text-align: center;
+            margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .onboarding-arrow.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .onboarding-arrow img {
+            width: 100px;
+            height: auto;
+        }
+
+        /* Make all links in case study content accessible */
+        .case-study-container a:not(footer a):not(.next-button):not(.prototype-link):not(.progress-item) {
+            text-decoration: underline;
+            font-weight: 600;
+            text-underline-offset: 2px;
+        }
+
+        .case-study-container a:not(footer a):not(.next-button):not(.prototype-link):not(.progress-item):hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        .demo-video {
+  height: 50vh;
+  width: auto;
+  display: block;
+  margin: 2rem 0;
+}
+
+        footer {
+            max-width: 1000px;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+        }
+
+        footer p {
+            text-align: center;
+            font-family: 'Nexa', sans-serif;
+            margin-left: -2rem;
+            color: rgb(85, 85, 85);
+        }
+
+        footer a {
+            font-family: 'Nexa', sans-serif;
+            color: rgb(85, 85, 85);
+            text-decoration: none;
+            transition: all 300ms ease;
+            position: relative;
+        }
+
+        footer a:hover {
+            color: black;
+        }
+
+        footer a::after {
+            content: "";
+            width: 0;
+            height: 2px;
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: black;
+            transition: width 0.3s ease;
+        }
+
+        footer a:hover::after {
+            width: 100%;
+        }
+
         @media screen and (max-width: 768px) {
             .case-study-title {
                 font-size: 2rem;
@@ -435,6 +797,28 @@
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+
+            .alternating-section,
+            .alternating-section.reverse {
+                flex-direction: column;
+            }
+            
+            .progress-container {
+                padding: 0 10px;
+            }
+            
+            .progress-item {
+                min-width: 60px;
+            }
+            
+            .progress-label {
+                font-size: 0.7rem;
+                max-width: 70px;
+            }
+
+            .profile-steps-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 900px) {
@@ -444,164 +828,6 @@
             .meta-item, .meta-item-left, .meta-item-middle, .meta-item-tools {
                 min-width: 0;
             }
-        }
-
-        /* Introduction section styles */
-        .introduction-section {
-            display: flex;
-            gap: 2.5rem;
-            margin: 2.5rem 0 2rem 0;
-            align-items: stretch;
-            flex-wrap: wrap;
-        }
-
-        .intro-left {
-            background: #eaf3ff;
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
-            flex: 1 1 280px;
-            min-width: 260px;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            box-sizing: border-box;
-        }
-
-        .intro-right {
-            flex: 2 1 350px;
-            min-width: 260px;
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            justify-content: flex-start;
-        }
-
-        .intro-block {
-            margin-bottom: 0.5rem;
-        }
-
-        .intro-label {
-            font-weight: 600;
-            color: black;
-            margin-bottom: 0.2rem;
-            font-size: 1.05rem;
-        }
-        
-        .intro-value {
-            color: #222;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        .intro-steps {
-            margin: 0.5rem 0 0 1.2rem;
-            padding: 0;
-            font-size: 1rem;
-        }
-
-        .intro-steps li {
-            margin: 0.5rem;
-        }
-
-        @media (max-width: 900px) {
-            .introduction-section {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            .intro-left, .intro-right {
-                min-width: 0;
-                width: 100%;
-            }
-        }
-
-        .animated-banner {
-            width: 100%;
-            border: 2.5px solid #eaf3ff;
-            border-radius: 18px;
-            margin: 2rem 0 3rem 0;
-            overflow: hidden;
-            background: #fff;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
-            display: flex;
-            align-items: center;
-            min-height: 100px;
-        }
-
-        .animated-banner.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .banner-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            gap: 2rem;
-            padding: 1rem 2rem;
-        }
-
-        .banner-title h2 {
-            margin: 0;
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #1a3a5d;
-        }
-
-        .banner-illustration img {
-            display: block;
-            background: #eaf3ff;
-            border-radius: 12px;
-            width: 200px;
-            height: auto;
-            object-fit: cover;
-        }
-
-        @media (max-width: 700px) {
-            .banner-content {
-                flex-direction: column-reverse;
-                align-items: flex-start;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            .banner-title h2 {
-                font-size: 1.2rem;
-            }
-            .banner-illustration img {
-                width: 60px;
-                height: 60px;
-            }
-        }
-
-        footer {
-            max-width: 1000px;
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 2rem;
-
-        }
-
-        footer p {
-            text-align: center;
-            font-family: 'Nexa', sans-serif;
-            margin-left: -2rem;
-            color: rgb(85, 85, 85);
-        }
-
-        footer a {
-            font-family: 'Nexa', sans-serif;
-            color: rgb(85, 85, 85);
-            text-decoration: none;
-            transition: all 300ms ease;
-        }
-
-        footer a:hover {
-            color: black;
-            text-decoration: none;
-            text-underline-offset: 0.3rem;
         }
     </style>
 </head>
@@ -690,14 +916,31 @@
 
         <p>Imagine arriving at a busy trade fair with hundreds of people to meet – and no idea where to start. That was the reality for many attendees: too little time, too many possible connections, and no clear way to prioritise <span class="highlighted-text">(user problem)</span>. This often led to missed opportunities, frustration, and lower perceived value of the event. Organisers, meanwhile, wanted to keep visitors engaged and deliver measurable ROI for exhibitors and sponsors <span class="highlighted-text">(business problem)</span>.</p>
 
-        <p class="padded-paragraph">From user persona insights and organiser interviews, we identified these <span class="highlighted-text">pain points:</span></p>
+        <p class="padded-paragraph">From user persona insights provided by another team, we identified these <span class="highlighted-text">pain points:</span></p>
 
-        <ul>
-            <li>Attendees wasted time trying to find relevant people, sessions, or exhibitors.</li>
-            <li>Event apps often felt clunky or unreliable, leading to low adoption.</li>
-            <li>Overwhelming choice made it difficult to focus on high-value opportunities.</li>
-            <li>Missed connections reduced the overall perceived value of attending.</li>
-        </ul>
+        <div class="pain-points-container">
+        <div class="pain-points-grid">
+            <div class="pain-point">
+                <div class="pain-point-icon">⏱️</div>
+                <p class="pain-point-text">Attendees wasted time trying to find relevant people, sessions, or exhibitors.</p>
+            </div>
+
+            <div class="pain-point">
+                <div class="pain-point-icon">📱</div>
+                <p class="pain-point-text">Event apps often felt clunky or unreliable, leading to low adoption.</p>
+            </div>
+
+            <div class="pain-point">
+                <div class="pain-point-icon">😵</div>
+                <p class="pain-point-text">Overwhelming choice made it difficult to focus on high-value opportunities.</p>
+            </div>
+
+            <div class="pain-point">
+                <div class="pain-point-icon">🔌</div>
+                <p class="pain-point-text">Missed connections reduced the overall perceived value of attending.</p>
+            </div>
+        </div>
+    </div>
 
         <p class="padded-paragraph">Our target users were B2B event attendees including speakers, sponsors, and exhibitors who needed to make strategic connections efficiently.</p>
 
@@ -713,14 +956,15 @@
 
         <p>Despite these, we aimed to deliver a <span class="highlighted-text">usable, privacy-conscious feature</span> that could launch in time for a real event.</p>
 
-        
-
         <!-- Ideation Section -->
         <h2 class="section-heading">Ideation & Early Concepts</h2>
 
-        <h3 class="subsection-heading">Breaking Down the Challenge</h3>
+         <h3 class="subsection-heading">Breaking Down the Challenge</h3>
+        <p>I started with outlining the complete user journey for matchmaking within the UpVisit app, combining the findings from the user research and the project requirements. </p>
+        <img src="assets/matchmaking/research/Matchmaking feature - user journey.png" alt="Matchmaking user journey" class="case-study-image">
 
-        <p>We approached this systematically, breaking the matchmaking feature into digestible technical components:</p>
+        
+        <p>And together with the team, we broke down the matchmaking feature into digestible technical components:</p>
 
         <ol class="numerated-list">
             <li><strong>Account & Profile Creation</strong> - Getting users set up</li>
@@ -730,150 +974,372 @@
         </ol>
 
         <img src="assets/matchmaking/research/Matchmaking feature - break down.png" alt="Matchmaking feature breakdown" class="case-study-image">
+      
 
+       
+        
 
-        <h3 class="subsection-heading">User Journey Mapping</h3>
-
-        <p>I outlined the complete user journey for matchmaking within the UpVisit app, considering both new and existing users. A particular challenge was ensuring the feature was mandatory and easily discoverable for events with matchmaking capabilities, whilst remaining invisible for other event types.</p>
-
-        <img src="assets/matchmaking/research/Matchmaking feature - user journey.png" alt="Matchmaking user journey" class="case-study-image">
-
-        <p>For the profile setup specifically, I created detailed user flows to understand all available options for new users whilst considering our existing user base:</p>
+        <p>To break it down further, I created a user flow specifically for the profile setup process, since up until that point, our app didn’t require user registration. My goal was to understand all possible paths for new users while also taking into account the needs of existing users. A particular challenge was ensuring the feature was mandatory and easily discoverable for events with matchmaking capabilities, whilst remaining invisible for other event types.</p>
 
         <img src="assets/matchmaking/research/Matchmaking feature break down.png" alt="User flow for profile creation" class="case-study-image">
-
+        
 
         <p>Initial sketches helped visualise the core matchmaking flow:</p>
 
         <img src="assets/matchmaking/research/mm sketch.png" alt="Matchmaking flow - sketches" class="case-study-image">
-
+       
 
         <!-- Design Section -->
         <h2 class="section-heading">Design & Prototyping</h2>
 
-        <h3 class="subsection-heading">Phase 1: Onboarding Redesign</h3>
+        <p>While the initial plan divided the matchmaking feature into four main parts — Account & Profile Creation, Attendee Discovery, Meeting Requests, and Post-Event Follow-up — I identified several gaps and opportunities for improvement once I began designing the user flows.<br>
+         First, I noticed that the existing onboarding flow could be improved.<br>
+         Second, I realised that account creation and profile setup were too complex as a single step and worked better when separated. Post-event follow-up had to be postponed to Matchmaking V2 due to time constraints.
+         The resulting five-stage flow better reflects user needs and project feasibility:</p>
+            <ol class="numerated-list">
+                <li><strong>Onboarding</strong></li>
+                <li><strong>Signup & Login</strong></li>
+                <li><strong>Profile Setup</strong></li>
+                <li><strong>Finding a Match</strong></li>
+                <li><strong>Book a Meeting</strong></li>
+            </ol>
+         
 
-        <p>Expecting an influx of new users, I started by redesigning the existing onboarding screens. We wanted to highlight more value and replaced illustrations with professional human photographs to create a more business-focused first impression.</p>
+        <!-- Progress tracker for Onboarding -->
+        <div class="progress-tracker">
+            <div class="progress-container">
+                <div class="progress-line"></div>
+                <h3 class="progress-item active">
+                    <div class="progress-dot">1</div>
+                    <div class="progress-label">Onboarding</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">2</div>
+                    <div class="progress-label">Signup & Login</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">3</div>
+                    <div class="progress-label">Profile Setup</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">4</div>
+                    <div class="progress-label">Finding a Match</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">5</div>
+                    <div class="progress-label">Book a Meeting</div>
+                </h3>
+            </div>
+        </div>
 
-        <p><strong>Before:</strong> Generic illustrations with basic messaging</p>
-        <img src="assets/matchmaking/onboarding/before/onboarding old.png" alt="Onboarding flow before" class="case-study-image">
+        <!-- Phase 1: Onboarding Redesign -->
+        <div id="onboarding-section">
+            <h3 class="subsection-heading fade-in-up">Stage 1: Onboarding Redesign</h3>
+            
+            <p class="fade-in-up">Expecting an influx of new users, I redesigned the existing onboarding screens. We wanted to highlight more value and replaced illustrations with human photos to create a more professional and business-focused first impression.</p>
+            
+            
+            <img src="assets/matchmaking/onboarding/Onboarding - before V3.png" alt="Onboarding flow before" class="case-study-image fade-in-up">
+            <p class="image-caption"><strong>Before:</strong> Previous onboarding screens with generic illustrations</p>
+            
+            <div class="onboarding-arrow">
+                <img src="assets/matchmaking/graphic elements/arrow to left.png" alt="arrow down">
+            </div>
+            
+            
+            <img src="assets/matchmaking/onboarding/Onboarding - sketches V2.png" alt="Onboarding sketches" class="case-study-image fade-in-up">
+            <p class="image-caption">Early sketches exploring different onboarding approaches</p>
+            
+            <div class="onboarding-arrow">
+                <img src="assets/matchmaking/graphic elements/arrow to right.png" alt="arrow down">
+            </div>
+            
+            
+            <img src="assets/matchmaking/onboarding/Onboarding - after V2.png" alt="Onboarding flow after" class="case-study-image scale-in">
+            <p class="image-caption"><strong>After:</strong> Human photos that make the experience more relatable, trustworthy, and user-centred.</p>
+        </div>
 
-        <p>Initial sketching process:</p>
-        <img src="assets/matchmaking/onboarding/sketches/onboarding sketches.png" alt="Onboarding sketches" class="case-study-image">
+        <!-- Progress tracker for Signup & Login -->
+        <div class="progress-tracker">
+            <div class="progress-container">
+                <div class="progress-line"></div>
+                <h3 class="progress-item">
+                    <div class="progress-dot">1</div>
+                    <div class="progress-label">Onboarding</div>
+                </h3>
+                <h3 class="progress-item active">
+                    <div class="progress-dot">2</div>
+                    <div class="progress-label">Signup & Login</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">3</div>
+                    <div class="progress-label">Profile Setup</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">4</div>
+                    <div class="progress-label">Finding a Match</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">5</div>
+                    <div class="progress-label">Book a Meeting</div>
+                </h3>
+            </div>
+        </div>
 
-        <p><strong>After:</strong> Professional photography showcasing real connections and enhanced value propositions</p>
-        <img src="assets/matchmaking/onboarding/after/onboarding new.png" alt="Onboarding flow after" class="case-study-image">
+        <!-- Phase 2: Signup & Login -->
+        <div id="auth-section">
+  <h3 class="subsection-heading fade-in-up">Stage 2: Signup & Login</h3>
 
-
-        <h3 class="subsection-heading">Phase 2: Streamlined Authentication</h3>
-
-        <p>Initially, I designed multiple signup options including third-party platform integration:</p>
-        <img src="assets/matchmaking/archive/signup/login-arc.png" alt="Signup V1" class="case-study-image">
-
-        <p>However, due to technical constraints (matchmaking was only available for email-invited users, so in cases a user decides to sign up with another email, we would have had to have a unique code to verify the invitation), we streamlined to a single flow:</p>
-        <img src="assets/matchmaking/finalised/signup new.png" alt="Signup V2" class="case-study-image">
-
-        <p><strong>Final Solution:</strong> Email-only signup with one-time password verification for invited attendees</p>
-
-        <h3 class="subsection-heading">Phase 3: Profile Setup Optimisation</h3>
-
-        <p>The profile setup underwent several iterations. Initial explorations of what information to collect:</p>
-        <img src="assets/matchmaking/research/Profile setup steps.png" alt="Profile setup - thinking what info to collect" class="case-study-image">
-
-        <p><strong>Initial Design:</strong> Four-step process</p>
-        <img src="assets/matchmaking/archive/profile setup arc.png" alt="Profile setup - V1" class="case-study-image">
-
-        <ol class="numerated-list">
-            <li>Basic information</li>
-            <li>Personalisation</li>
-            <li>Contact information</li>
-            <li>Preview and save</li>
-        </ol>
-
-        <p><strong>Final Design:</strong> Simplified three-step process</p>
-        <div class="profile-steps-row">
-    <div class="profile-step-item">
-        <img src="assets/matchmaking/Profile/Iphone 14 - 1.png" alt="Profile setup - step 1 finalised">
+  <div class="before-after-grid fade-in-up">
+    <!-- Before -->
+    <div class="before-column">
+      <p>Initially, I designed multiple signup options, including third-party platform integration, to make the signup and login process as convenient as possible:</p>
+      <img src="assets/matchmaking/archive/signup/login-arc.png" 
+           alt="Signup V1" 
+           class="case-study-image">
+      <p class="image-caption">Initial design with multiple signup options</p>
     </div>
-    <div class="profile-step-item">
-        <video src="assets/matchmaking/Profile/Autofill with LinkedIn - frame silver.mp4" alt="Profile setup - autofill with LinkedIn" autoplay loop muted playsinline></video>
+
+    <!-- Arrow (image) -->
+    <div class="arrow-column">
+      <img src="assets/matchmaking/graphic elements/horizontal arrow to right.png" alt="Arrow indicating transformation" class="arrow-image">
     </div>
-    <div class="profile-step-item">
-        <img src="assets/matchmaking/Profile/Iphone 14 - 2.png" alt="Profile setup - step 2 finalised">
+
+    <!-- After -->
+    <div class="after-column">
+      <p>However, due to technical constraints (matchmaking was only available for email-invited users, so in cases a user decides to sign up with another email, we would have had to have an extra verification step to verify the invitation), we streamlined to a single option:</p>
+      <img src="assets/matchmaking/signup new.png" 
+           alt="Signup V2" 
+           class="case-study-image">
+      <p class="image-caption">Later: email-only signup flow</p>
     </div>
-    <div class="profile-step-item">
-        <img src="assets/matchmaking/Profile/Iphone 14 - 3.png" alt="Profile setup - step 3 finalised">
-    </div>
+  </div>
+
+  <p class="fade-in-up"><strong>Final Solution:</strong> Email-only signup with one-time password verification for invited attendees.</p>
 </div>
 
-        <ol class="numerated-list">
-            <li>Profile images and basic information (with LinkedIn integration)</li>
-            <li>Event goals</li>
-            <li>Personalise & save</li>
-        </ol>
 
-        <p>The LinkedIn integration was a game-changer—users could authenticate and automatically populate photos and basic information, significantly reducing setup time.</p>
+        <!-- Progress tracker for Profile Setup -->
+        <div class="progress-tracker">
+            <div class="progress-container">
+                <div class="progress-line"></div>
+                <h3 class="progress-item">
+                    <div class="progress-dot">1</div>
+                    <div class="progress-label">Onboarding</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">2</div>
+                    <div class="progress-label">Signup & Login</div>
+                </h3>
+                <h3 class="progress-item active">
+                    <div class="progress-dot">3</div>
+                    <div class="progress-label">Profile Setup</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">4</div>
+                    <div class="progress-label">Finding a Match</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">5</div>
+                    <div class="progress-label">Book a Meeting</div>
+                </h3>
+            </div>
+        </div>
 
-        <h3 class="subsection-heading">Phase 4: Matchmaking Interface</h3>
+        <!-- Phase 3: Profile Setup Optimisation -->
+        <div id="profile-section">
+            <h3 class="subsection-heading fade-in-up">Stage 3: User Profile Setup</h3>
 
-        <p>The core experience featured a customised list of attendees based on profile parameters:</p>
-         <img src="assets/matchmaking/matchmaking process/attendee list+frame.png" alt="Attendees list" class="case-study-image">
+            <p class="fade-in-up">Next, I defined which profile information would be valuable for matchmaking algorithms while keeping the process simple and user-friendly.</p>
+<div style="max-width: 600px; margin: 2rem auto;">
+    <img src="assets/matchmaking/research/Profile setup steps.png" 
+         alt="Profile setup - thinking what info to collect" 
+         class="expandable-image fade-in-up" 
+         onclick="openModal(this)"
+         style="cursor: pointer; transition: transform 0.3s ease; box-shadow: 0">
+    
+</div>
+
+        <!-- Arrow (image) -->
+        <div class="arrow-column">
+        <img src="assets/matchmaking/graphic elements/arrow to right.png" alt="Arrow indicating transformation" class="arrow-image">
+        </div>
+
+            
+            <img src="assets/matchmaking/Profile/profile setup - before.png" alt="Profile setup - V1" class="case-study-image fade-in-up">
+            <p class="image-caption">Initial four-step profile creation process</p>
+
+          
+
+             <!-- Arrow (image) -->
+             <div class="arrow-column">
+             <img src="assets/matchmaking/graphic elements/arrow to left.png" alt="Arrow indicating transformation" class="arrow-image">
+             </div>
+
+            
+           <img src="assets/matchmaking/Profile/profile setup - after.png" alt="Profile setup - V2" class="case-study-image fade-in-up">
+            
+            <p class="image-caption">Final three-step profile setup with LinkedIn integration</p>
+
+            <p>I removed the contact information page to remain compliant with user data regulations and discarded the final preview step, as the development team made the profile information saved in the background for user convenience. As a result, profile creation was simplified into three clear steps and also included an option to fill with LinkedIn.</p>
+
+            <ol class="numerated-list fade-in-up">
+                <li>Profile images and basic information (with LinkedIn integration)</li>
+                <li>Event goals</li>
+                <li>Personalise & save</li>
+            </ol>
+
+            <!-- Arrow (image) -->
+             <div class="arrow-column">
+             <img src="assets/matchmaking/graphic elements/arrow down whimsical.png" alt="Arrow indicating transformation" class="arrow-image">
+             </div>
 
 
-        <p><strong>Privacy Features Implemented:</strong></p>
 
-        <p>Privacy considerations for unlogged users and profile completion requirements:</p>
-         <img src="assets/matchmaking/matchmaking process/mm locked+frames.png" alt="Matchmaking locked state" class="case-study-image">
-
-
-        <p>Rate limiting to prevent bot scraping:</p>
-        <img src="assets/matchmaking/matchmaking process/view limit reached+frame.png" alt="View limit reached" class="case-study-image">
-
-        <ul>
-            <li>Hidden attendee lists for incomplete profiles</li>
-            <li>Limited profile views (20 per hour) to prevent bot scraping</li>
-            <li>Restricted access based on event invitations</li>
-            <li>One meeting request per attendee per 24 hours to prevent spam</li>
-        </ul>
-
-        <h3 class="subsection-heading">Phase 5: Meeting Request System</h3>
-
-        <p>Since developing our own real-time communication tool wasn't feasible, we integrated an existing chat solution whilst building our own structured meeting request system:</p>
-         <img src="assets/matchmaking/matchmaking process/some screenshots.png" alt="Matchmaking screens" class="case-study-image">
-         <video src="assets/matchmaking/matchmaking process/Matchmaking - booking a request - previous design  + frame.mp4" alt="Profile setup - autofill with LinkedIn" autoplay loop muted playsinline></video>
+                <div class="alternating-section reverse">
+                <div class="alternating-content fade-in-right">
+                    <p>The LinkedIn integration was a game-changer—users could authenticate and automatically populate their profile photos and basic information, significantly reducing setup time.</p>
+                </div>
+                <div class="alternating-image fade-in-left">
+                    <video src="assets/matchmaking/Profile/Autofill with LinkedIn - frame silver.mp4" alt="Profile setup - autofill with LinkedIn" autoplay loop muted playsinline class="demo-video"></video>
+                </video>
+                    <p class="image-caption">Profile auto-fill with LinkedIn</p>
+                </div>
+            </div>
 
 
-        <p>Email sending limitations for privacy protection:</p>
-         <img src="assets/matchmaking/matchmaking process/contact via email+frame.png" alt="Contact via email" class="case-study-image">
 
 
-        <p>User safety features:</p>
-         <img src="assets/matchmaking/matchmaking process/report a user+frame.png" alt="Report a user" class="case-study-image">
+        <!-- Progress tracker for Finding a Match -->
+        <div class="progress-tracker">
+            <div class="progress-container">
+                <div class="progress-line"></div>
+                <h3 class="progress-item">
+                    <div class="progress-dot">1</div>
+                    <div class="progress-label">Onboarding</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">2</div>
+                    <div class="progress-label">Signup & Login</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">3</div>
+                    <div class="progress-label">Profile Setup</div>
+                </h3>
+                <h3 class="progress-item active">
+                    <div class="progress-dot">4</div>
+                    <div class="progress-label">Finding a Match</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">5</div>
+                    <div class="progress-label">Book a Meeting</div>
+                </h3>
+            </div>
+        </div>
 
+        <!-- Phase 4: Finding a Match -->
+        <div id="matchmaking-section">
+            <h3 class="subsection-heading fade-in-up">Stage 4: Finding a Match</h3>
+            
+            <div class="alternating-section">
+                <div class="alternating-content fade-in-left">
+                    <p>The core matchmaking experience meant seeing a customised list of attendees based on profile parameters:</p>
+                </div>
+                <div class="alternating-image fade-in-right">
+                    <img src="assets/matchmaking/matchmaking process/attendee list+frame.png" alt="Attendees list" class="case-study-image">
+                     
+                   
+                </div>
+            </div>
+            
+            <div class="alternating-section reverse">
+                <div class="alternating-content fade-in-right">
+                    
+                    <p>To protect user privacy, I restricted access to the attendee list in certain scenarios, such as for unlogged users, users with incomplete profiles, or visitors from other matchmaking events who were not invited to the current event.</p>
+                </div>
+                <div class="alternating-image fade-in-left">
+                    <img src="assets/matchmaking/matchmaking process/mm locked+frames.png" alt="Matchmaking locked state" class="case-study-image">
+                    
+                   
 
-        <p>This provided:</p>
-        <ul>
-            <li>Scheduled meeting capabilities</li>
-            <li>Email backup for notifications</li>
-            <li>On-the-spot communication for urgent issues</li>
-            <li>User reporting functionality for safety</li>
-        </ul>
+                </div>
+            </div>
+            
+            <div class="alternating-section">
+                <div class="alternating-content fade-in-left">
+                    <p>Another privacy measure was a view-limit restriction to prevent automated scraping, allowing users to view only 20 profiles per hour.</p>
+                </div>
+                <div class="alternating-image fade-in-right">
+                    <img src="assets/matchmaking/matchmaking process/view limit reached+frame.png" alt="View limit reached" class="case-study-image">
+                    
+                </div>
+            </div>
 
-        <p><strong>Prototype demonstration:</strong></p>
-        <div class="image-placeholder">[Insert: PROTOTYPE VIDEO placeholder]</div>
+            
+        </div>
+
+        <!-- Progress tracker for Book a Meeting -->
+        <div class="progress-tracker">
+            <div class="progress-container">
+                <div class="progress-line"></div>
+                <h3 class="progress-item">
+                    <div class="progress-dot">1</div>
+                    <div class="progress-label">Onboarding</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">2</div>
+                    <div class="progress-label">Signup & Login</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">3</div>
+                    <div class="progress-label">Profile Setup</div>
+                </h3>
+                <h3 class="progress-item">
+                    <div class="progress-dot">4</div>
+                    <div class="progress-label">Finding a Match</div>
+                </h3>
+                <h3 class="progress-item active">
+                    <div class="progress-dot">5</div>
+                    <div class="progress-label">Book a Meeting</div>
+                </h3>
+            </div>
+        </div>
+
+        <!-- Phase 5: Book a Meeting -->
+        <div id="meeting-section">
+            <h3 class="subsection-heading fade-in-up">Stage 5: Book a Meeting</h3>
+            
+            <p class="fade-in-up">The matchmaking feature allowed event attendees to send meeting requests to one another through the app, facilitating connections at the event. We developed our own structured meeting request system, and as a backup, users could also send an email or connect via LinkedIn. Additionally, we integrated an existing chat solution to make communication even more flexible.</p>
+            
+            <!-- First video stays as is -->
+            <img src="assets/matchmaking/matchmaking process/mm process.png" alt="Matchmaking screens" class="case-study-image fade-in-up">
+            
+            
+           
+           
+            </div>
+
+           
+        </div>
+
+        <!-- Interactive Prototype Section -->
+        <h3 class="subsection-heading fade-in-up">Interactive Prototype</h3>
+        <p class="fade-in-up">A short prototype showing how the matchmaking flow works.</p>
+ <video src="assets/matchmaking/matchmaking process/Matchmaking - booking a request - previous design  + frame.mp4" alt="Booking a meeting request" autoplay loop muted playsinline class="demo-video"></video>
+            
 
         <!-- Implementation Section -->
         <h2 class="section-heading">Implementation & User Feedback</h2>
 
-        <p>We didn't have time or budget for formal usability testing, so we tested internally and launched at a real event – Taxtival – to gather live feedback. Early reactions highlighted a few friction points:</p>
+        <p>Since we didn't have time or budget for formal usability testing, we extensively tested the feature internally and launched it at a real event – Taxtival – to gather live feedback. Early reactions highlighted a few friction points:</p>
 
         <ul>
-            <li>Some users disliked that profiles had to be completed before accessing the app.</li>
-            <li>Others weren't aware of the feature or missed their invitation.</li>
+            <li>Some users disliked that profile completion could not be skipped.</li>
+            <li>Others were unaware of the feature or missed their email invitation.</li>
+            <li>The feature was not yet technically mature</li>
         </ul>
 
-        <p>Despite this, our next launch at <strong>Start-up BW Summit</strong> saw much better results: 300+ profiles were created, and over 140 meetings were scheduled through the app.</p>
-
+        <p>Despite this, the feature performed much better during its second rollout at <strong>Start-up BW Summit</strong> (see the stats below).</p>
         <!-- Impact Section -->
         <h2 class="section-heading">Impact & Results</h2>
 
@@ -907,40 +1373,31 @@
 
         <p>Based on feedback and the feature vision, our future plans included:</p>
         <ul>
-            <li>Adding a more flexible agenda view</li>
+            <li>Adding a flexible agenda view with scheduled meetings and sessions</li>
             <li>Introducing a swipe (Tinder-style) UI for quicker match exploration</li>
             <li>Providing post-event follow-up prompts to help nurture connections</li>
         </ul>
 
-           <img src="assets/matchmaking/matchmaking process/next steps.png" alt="Next steps" class="case-study-image">
+        <img src="assets/matchmaking/matchmaking process/next steps.png" alt="Next steps" class="case-study-image">
+        <p class="image-caption">Planned improvements for the matchmaking</p>
 
-
-        <h3 class="subsection-heading">Long-term Vision</h3>
-        <ul>
-            <li>Advanced matching algorithms</li>
-            <li>Real-time communication capabilities</li>
-            <li>Enhanced analytics for event organisers</li>
-            <li>Integration with CRM systems</li>
-        </ul>
+        
 
         <!-- Key Learnings Section -->
         <h2 class="section-heading">Key Learnings</h2>
 
-        <p>This project reminded me that no feature is perfect at first release and that real-world testing is invaluable. Even with tight constraints, we managed to design and ship a matchmaking tool that other companies spend years developing – and users actually used it. The key takeaway? Deliver value early, learn fast, and iterate.</p>
 
         <div class="insights-list">
             <p>This project taught me several valuable lessons:</p>
             <ul>
                 <li><strong>Perfection isn't the goal on the first try</strong> - Creating a functional feature that addresses real user needs is already a significant achievement</li>
                 <li><strong>Real-world testing is invaluable</strong> - No amount of internal testing can replace actual user feedback in live environments</li>
-                <li><strong>Constraints spark creativity</strong> - Working within tight deadlines and technical limitations led to innovative solutions</li>
                 <li><strong>Privacy by design matters</strong> - Building in privacy considerations from the start creates trust and prevents issues later</li>
-                <li><strong>Iteration is everything</strong> - The difference between our first and second event launch showed the power of rapid iteration based on user feedback</li>
             </ul>
         </div>
 
         <div class="quote-box">
-            This project demonstrated that whilst we couldn't create a feature as sophisticated as what established companies spend years developing, we could still deliver meaningful value to users whilst laying the groundwork for future enhancements. Sometimes, the first step is simply getting started.
+        This project reminded me that no feature is perfect at first release and that real-world testing is invaluable. Even with tight constraints, we managed to design and ship a matchmaking tool that other companies spend years developing – and users actually used it. The key takeaway? Deliver value early, learn fast, and iterate.
         </div>
 
         <a href="survey-case-study.html" class="next-button">
@@ -948,14 +1405,20 @@
         </a>
     </div>
 
+    <!-- Modal for expanded images -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
     <!-- Footer -->
     <footer>
-    <p>Copyright &#169; 2025 Anna Birdal</p>
-    <p>
-        <a href="imprint.html">Imprint</a>
-        <span style="margin: 0 1rem;"></span>
-        <a href="privacy-policy.html">Privacy Policy</a>
-    </p>
+        <p>Copyright &#169; 2025 Anna Birdal</p>
+        <p>
+            <a href="imprint.html">Imprint</a>
+            <span style="margin: 0 1rem;"></span>
+            <a href="privacy-policy.html">Privacy Policy</a>
+        </p>
     </footer>
 
     <script src="script.js"></script>
@@ -985,8 +1448,33 @@
             });
         }
 
+         
+
+
+
+
+        // Animation on scroll
+        function initScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in, .onboarding-arrow');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            animatedElements.forEach(el => observer.observe(el));
+        }
+
         // Animate banners on scroll
         document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+            
             const banners = document.querySelectorAll('.animated-banner');
             function handleBannerAnimation() {
                 banners.forEach(banner => {
@@ -999,6 +1487,41 @@
             window.addEventListener('scroll', handleBannerAnimation);
             handleBannerAnimation();
         });
+
+        // Modal functionality
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = "none";
+            
+            // Restore body scroll
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on click outside or on escape key
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    
     </script>
 </body>
 </html>
