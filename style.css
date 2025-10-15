@@ -1,6 +1,14 @@
 /* GENERAL */
 
 @import url('https://fonts.cdnfonts.com/css/nexa-bold'); 
+@import url('https://fonts.cdnfonts.com/css/lato?weights=300,400,250, 275');
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+
+                
+
+                
                 
 * {
     margin: 0;
@@ -466,7 +474,7 @@ article .icon {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     
-    border-radius: 24px;
+    border-radius: none;
     padding: 0; /* Remove padding to let image fill top */
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
@@ -492,7 +500,7 @@ article .icon {
     transform: translateY(-12px) scale(1.03);
     background: rgba(255, 255, 255, 0.25);
    
-    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 25px 50px -12px rgba(73, 137, 239, 0.3);
     text-decoration: none;       /* still no underline on hover */
 }
 
@@ -505,7 +513,7 @@ article .icon {
     position: relative;
     width: 100%;
     height: 200px; /* Reduced height for landscape look */
-    border-radius: 24px 24px 0 0; /* Only top corners rounded */
+    border-radius: none; /* Only top corners rounded 24 24 0 0 */
     overflow: hidden;
     margin-bottom: 0; /* No margin since text goes below */
 }
@@ -896,6 +904,93 @@ article .icon {
     font-weight: 600; /* Keep existing weight */
 }
 
+/* About me page */
+/* Tablet - Stack vertically */
+@media screen and (max-width: 1024px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin: 3rem 4%;
+        padding: 2.5rem;
+        text-align: center;
+    }
+
+    .profile-image {
+        max-width: 280px;
+    }
+
+    .profile-content {
+        align-items: center;
+    }
+
+    .intro-text {
+        text-align: center;
+    }
+
+    .btn-container {
+        justify-content: center;
+    }
+}
+
+/* Mobile - Optimized for small screens */
+@media screen and (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+        margin: 2rem 3%;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        border-radius: 16px;
+    }
+
+    .profile-image {
+        max-width: 240px;
+    }
+
+    .profile-content {
+        gap: 1.25rem;
+    }
+
+    .intro-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .btn-container {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+/* Extra small mobile */
+@media screen and (max-width: 480px) {
+    .profile-container {
+        margin: 1.5rem 2%;
+        padding: 1.5rem 1rem;
+    }
+
+    .profile-image {
+        max-width: 200px;
+    }
+
+    .profile-content h1 {
+        font-size: 1.75rem;
+    }
+
+    .intro-text {
+        font-size: 0.9375rem;
+    }
+
+    .btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9375rem;
+    }
+}
 
 
 /* FOOTER */
